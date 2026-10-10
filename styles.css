@@ -100,7 +100,7 @@ body{
 /* selfie / try-on images */
 .photo{border-radius:8px;height:120px;display:flex;align-items:center;justify-content:center;font-size:56px;
   background:linear-gradient(160deg,#dfe9f3,#aebfd4);position:relative;overflow:hidden}
-.photo.result{background:linear-gradient(160deg,#f6d5e0,#c9a24b)}
+.photo.result{background:linear-gradient(160deg,#f6d5e0,#c9a24b);height:170px}
 .photo .scanline{position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(255,255,255,.7),transparent);
   transform:translateY(-100%)}
 .processing .scanline{animation:scan 1.4s ease-in-out infinite}
