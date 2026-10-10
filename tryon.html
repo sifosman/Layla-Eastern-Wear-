@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Virtual Try-On — Layla for Eastern Wear</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧕</text></svg>" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<nav class="topnav">
+  <a class="brand" href="index.html">🧕 Layla <span>for Eastern Wear</span></a>
+  <div class="links">
+    <a href="index.html">Intro</a>
+    <a href="conversation.html">The Sale</a>
+    <a href="tryon.html" class="on">Try-On</a>
+    <a href="checkout.html">Checkout</a>
+    <a href="retention.html">Retention</a>
+    <a href="reuse.html">The Maths</a>
+    <a href="next-steps.html">Next Steps</a>
+  </div>
+</nav>
+
+<section class="scene">
+  <span class="scene-tag">2 · The fitting room</span>
+  <h2>"Show me on <em>me</em>" — virtual try-on</h2>
+  <p class="sub">The customer sends a photo. AI dresses her in the garment and sends it back. Seconds later.</p>
+  <div class="stage">
+    <div class="phone"><div class="screen">
+      <div class="wa-header"><div class="wa-avatar">🧕</div><div><div class="wa-name">Layla · Eastern Wear</div><div class="wa-sub online">online</div></div></div>
+      <div class="chat">
+        <div class="b in" style="animation-delay:.8s">Send me a clear photo of yourself and I'll show you exactly how it looks on you ✨<span class="t">19:05</span></div>
+        <div class="b out" style="animation-delay:2s">
+          <div class="photo" id="tryonPhoto"><span class="before">🧍‍♀️</span><div class="scanline"></div><div class="after">🧕✨🥻</div></div>
+          <span class="cap processing-tag" id="procTag">photo</span>
+          <span class="t">19:06 <span class="tick">✓✓</span></span>
+        </div>
+        <div class="b in" id="typingBubble" style="animation-delay:3.4s"><span class="dots"><i></i><i></i><i></i></span></div>
+        <div class="b in" style="animation-delay:4.6s">
+          <div class="photo result"><span>🧕</span></div>
+          Here you go — that's the embroidered abaya on you 💫 The colour really suits. Shall I add a size 34 to your cart? Eid stock goes fast.<span class="t">19:06</span>
+        </div>
+        <div class="b out" style="animation-delay:6s">Wow 😍 yes please!<span class="t">19:07 <span class="tick">✓✓</span></span></div>
+      </div>
+    </div></div>
+    <div class="captions">
+      <div class="cap-item new" style="animation-delay:1s"><span class="tag">New build</span><b>Photo → garment → rendered result</b>Customer's photo + your product image = a realistic try-on, sent straight back in chat.</div>
+      <div class="cap-item new" style="animation-delay:3s"><span class="tag">New build</span><b>~R1.30 per try-on</b>Runs on the same AI provider already powering Layla. Pennies per fitting.</div>
+      <div class="cap-item keep" style="animation-delay:5s"><span class="tag">Already built</span><b>Moves straight to the close</b>The wow-moment lands while she's engaged — Layla asks for the order immediately.</div>
+    </div>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="conversation.html">← The Sale</a>
+  <a href="checkout.html" class="primary">Next: checkout →</a>
+</div>
+
+<script>
+  // chat autoscroll + timed try-on processing / reveal
+  const chat=document.querySelector('.chat');
+  const end=Date.now()+12000;
+  const iv=setInterval(()=>{chat.scrollTop=chat.scrollHeight;if(Date.now()>end)clearInterval(iv)},250);
+  const photo=document.getElementById('tryonPhoto');
+  setTimeout(()=>photo.classList.add('processing'),2100);
+  setTimeout(()=>{photo.classList.remove('processing');photo.classList.add('done');photo.closest('.b').classList.add('done');},4600);
+  const proc=document.getElementById('procTag');setTimeout(()=>proc.textContent='processing…',2100);
+  const typing=document.getElementById('typingBubble');setTimeout(()=>typing.style.display='none',4600);
+</script>
+
+</body>
+</html>
