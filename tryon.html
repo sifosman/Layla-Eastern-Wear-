@@ -59,10 +59,16 @@
 </div>
 
 <script>
-  // chat autoscroll + timed try-on processing / reveal
+  // scroll down naturally as each new message arrives (like a real phone)
   const chat=document.querySelector('.chat');
-  const end=Date.now()+12000;
-  const iv=setInterval(()=>{chat.scrollTop=chat.scrollHeight;if(Date.now()>end)clearInterval(iv)},250);
+  document.querySelectorAll('.chat .b').forEach(b=>{
+    b.addEventListener('animationstart',()=>{
+      const cb=chat.getBoundingClientRect(),bb=b.getBoundingClientRect();
+      let d=bb.bottom-cb.bottom;
+      if(d>0&&bb.top-d<cb.top)d=bb.top-cb.top;
+      if(d>0)chat.scrollBy({top:d,behavior:'smooth'});
+    });
+  });
   const photo=document.getElementById('tryonPhoto');
   setTimeout(()=>photo.classList.add('processing'),2100);
   setTimeout(()=>{photo.classList.remove('processing');photo.classList.add('done');photo.closest('.b').classList.add('done');},4600);

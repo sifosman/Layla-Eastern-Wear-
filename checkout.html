@@ -60,9 +60,16 @@
 </div>
 
 <script>
+  // scroll down naturally as each new message arrives (like a real phone)
   const chat=document.querySelector('.chat');
-  const end=Date.now()+12000;
-  const iv=setInterval(()=>{chat.scrollTop=chat.scrollHeight;if(Date.now()>end)clearInterval(iv)},250);
+  document.querySelectorAll('.chat .b').forEach(b=>{
+    b.addEventListener('animationstart',()=>{
+      const cb=chat.getBoundingClientRect(),bb=b.getBoundingClientRect();
+      let d=bb.bottom-cb.bottom;
+      if(d>0&&bb.top-d<cb.top)d=bb.top-cb.top;
+      if(d>0)chat.scrollBy({top:d,behavior:'smooth'});
+    });
+  });
 </script>
 
 </body>
