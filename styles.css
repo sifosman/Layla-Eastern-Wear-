@@ -134,6 +134,8 @@ body{
 
 /* floating side captions */
 .captions{display:flex;flex-direction:column;gap:14px;max-width:340px}
+.captions.cap-row{flex-direction:row;max-width:900px;justify-content:center;flex-wrap:wrap}
+.captions.cap-row .cap-item{flex:1;min-width:220px}
 .cap-item{
   background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-left:4px solid var(--gold);
   border-radius:10px;padding:14px 16px;color:#dce8f5;font-size:14px;line-height:1.5;
@@ -243,8 +245,47 @@ body{
 @keyframes fillN{to{width:18%}}
 
 @media (max-width:920px){
-  .phone{width:290px;height:580px}
-  .stage{gap:24px}
-  .topnav{flex-wrap:wrap;gap:6px;padding:10px 14px}
-  .topnav .links{flex-wrap:wrap}
+  .stage{gap:28px}
+  .captions{max-width:100%}
+  .cap-row{flex-direction:column;max-width:100%;align-items:stretch}
+  /* pipeline turns vertical */
+  .pipe{flex-direction:column}
+  .connector{width:3px;height:30px;background:repeating-linear-gradient(180deg,var(--gold) 0 8px,transparent 8px 14px)}
+  .connector::after{right:-3.5px;top:auto;bottom:-8px;border-left-color:transparent;border-top-color:var(--gold)}
+  .pipe-branch{flex-direction:column;gap:12px;align-items:center}
+  .reuse-labels{flex-direction:column;gap:4px}
+}
+
+@media (max-width:640px){
+  /* nav: brand row + horizontally scrollable links */
+  .topnav{padding:10px 14px;flex-wrap:wrap;row-gap:6px}
+  .topnav .brand{font-size:14px;white-space:nowrap}
+  .topnav .links{width:100%;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+  .topnav .links::-webkit-scrollbar{display:none}
+  .topnav .links a{font-size:12px;padding:6px 10px;white-space:nowrap;flex-shrink:0}
+
+  .scene{padding:120px 16px 100px}
+  .scene h2{font-size:clamp(24px,7.5vw,34px)}
+  .scene .sub{font-size:14px;margin-bottom:28px;padding:0 8px}
+  .scene-tag{font-size:10px}
+
+  .phone{width:min(300px,88vw);height:560px}
+  .browser{width:min(300px,88vw)}
+
+  .node{min-width:110px;padding:14px 16px;width:min(240px,80vw)}
+  .blocks{grid-template-columns:repeat(2,1fr);gap:10px}
+  .block{padding:14px 10px}
+  .block .e{font-size:24px}
+  .block .n{font-size:12px}
+  .reuse-track{height:26px}
+  .reuse-bar{margin-top:28px}
+
+  .chip{padding:11px 16px;font-size:13.5px}
+  .step{padding:13px 14px;gap:12px}
+  .step .num{width:30px;height:30px;font-size:14px}
+  .step .txt{font-size:14px}
+
+  .cap-item{padding:12px 14px;font-size:13.5px}
+  .pager{bottom:14px;gap:8px;padding:0 12px}
+  .pager a{padding:9px 14px;font-size:12.5px}
 }
